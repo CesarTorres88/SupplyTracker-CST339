@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - SupplyTrack</title>
+</head>
+<body>
+    <h2>Login to SupplyTrack</h2>
+    
+    <form th:action="@{/login}" th:object="${loginForm}" method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" th:field="*{username}" />
+            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</span>
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" th:field="*{password}" />
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
+        </div>
+
+        <div th:if="${error}">
+            <p th:text="${error}">Invalid credentials</p>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>

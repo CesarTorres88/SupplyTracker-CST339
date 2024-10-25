@@ -1,7 +1,9 @@
 package com.gcu.controller;
 
 import com.gcu.model.RegistrationModel;
+import com.gcu.service.RegistrationService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,7 +13,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
-public class RegistrationController {
+public class RegistrationController
+
+{
+
+    private final RegistrationService registrationService;
+
+
+    @Autowired //Inject the RegistrationService bean
+    public RegistrationController(RegistrationService registrationService)
+    {
+        this.registrationService = registrationService;
+    }
+
 
     // Display registration form
     @GetMapping("/register")
@@ -27,6 +41,11 @@ public class RegistrationController {
         {
             return "registrationPage";
         }
+        //Use service layer for business logic
+        String regResult = registrationService.registerUser(registrationModel);
+        model.addAttribute("message", regResult);
+
+
         // For now, we'll just display the data, and eventually, we can save it to a database
         model.addAttribute("registrationData", registrationModel);
         return "registrationSuccess";

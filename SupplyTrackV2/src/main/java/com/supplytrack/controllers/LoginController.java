@@ -1,10 +1,8 @@
-package com.gcu.controller;
+package com.supplytrack.controllers;
 
-import com.gcu.model.LoginForm;
-import com.gcu.service.LoginService;
-
+import com.supplytrack.model.LoginForm;
+import com.supplytrack.controllers.LoginService;
 import jakarta.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +30,7 @@ public class LoginController {
         model.addAttribute("loginForm", loginForm);
         return "login";
     }
-
+    
     @GetMapping("/product")
     public String showProductPage() {
         return "product"; // Ensure there's a "product.html" file in the templates directory

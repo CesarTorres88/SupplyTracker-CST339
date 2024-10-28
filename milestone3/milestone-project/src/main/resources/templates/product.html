@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <title>Product List</title>
 </head>
-<a href="/createproduct" class="create-product-button">Create New Product</a>
 <body>
     <div layout:fragment="content">
         <div th:each="product : ${products}" class="product-card">
@@ -22,6 +21,7 @@
                 <p><strong>🔔Reorder Point:</strong> <span th:text="${product.reorder_point}">0</span></p>
                 <p><strong>🔄Reorder Amount:</strong> <span th:text="${product.reorder_amt}">0</span></p>
                 <p><strong>💵Cost:</strong> $<span th:text="${product.cost}">0.00</span></p>
+                <a href="/createproduct" class="create-product-button">Create New Product</a>
             </form>
         </div>
     </div>

@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<div th:fragment="header" style="background-color:black;">
+    <div align="center" style="background-color:black;">
+        <img th:src="@{/images/SupplyTrackerLogo.jpg}" />
+        <img th:src="@{/images/SupplyTrackerTitle.jpg}" />
+    </div>
+    <div class="example" style="background-color:black;">
+        <nav class="navbar navbar-default">
+            <div class="navbar-header" style="background-color:black;">
+                <a href="/home" class="navbar-brand" style="color:white;">Home</a>
+
+            </div>
+            <div id="navbarCollapse" class="collapse navbar-collapse" style="background-color:black;">
+                <ul class="nav navbar-nav navbar-right" style="background-color:black;">
+                    <li><a href="/createproduct" style="color: white;">Create Product</a></li>
+                    <li><a href="/products" style="color: white;">Products</a></li>
+                    <li><a href="/login" style="color:white;">Login</a></li>
+                    <li><a href="/register" style="color:white;">Sign Up</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <h2 th:text="${title}" style="color:white;">Default Message Text</h2><br />
+</div>
+<div th:fragment="footer" style="background-color:black;">
+    <h5 style="color:white; text-align:center; position:fixed; bottom:0; width:100%;">Copyright 2024 Grand Canyon
+        University</h5>
+</div>
+
+</html>

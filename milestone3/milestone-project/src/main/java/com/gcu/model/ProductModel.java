@@ -43,29 +43,7 @@ public class ProductModel {
         return id;
     }
 
-    public ProductModel(int id, @NotBlank(message = "Product name is required") String name,
-			@DecimalMin(value = "0.0", inclusive = false, message = "Price must be greater than 0.00") double price,
-			@NotBlank(message = "Description is required") String description,
-			@Min(value = 0, message = "Current quantity cannot be negative") int currentQuantity,
-			@NotBlank(message = "Vendor is required") String vendor,
-			@NotBlank(message = "Category is required") String category,
-			@Min(value = 0, message = "Reorder point cannot be negative") int reorder_point,
-			@Min(value = 1, message = "Reorder amount must be at least 1") int reorder_amt,
-			@DecimalMin(value = "0.00", inclusive = false, message = "Cost must be greater than 0.00") double cost) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.price = price;
-		this.description = description;
-		this.currentQuantity = currentQuantity;
-		this.vendor = vendor;
-		this.category = category;
-		this.reorder_point = reorder_point;
-		this.reorder_amt = reorder_amt;
-		this.cost = cost;
-	}
-
-	public void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -141,4 +119,3 @@ public class ProductModel {
         this.cost = cost;
     }
 }
-

@@ -1,14 +1,5 @@
 package com.gcu.controller;
 
-import com.gcu.model.LoginForm;
-import com.gcu.model.ProductModel;
-import com.gcu.service.LoginService;
-import com.gcu.service.ProductsInterface;
-
-import jakarta.validation.Valid;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,16 +8,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.gcu.model.LoginForm;
+import com.gcu.service.LoginService;
+
+import jakarta.validation.Valid;
+
 @Controller
 public class LoginController {
 
-	@Autowired
     private final LoginService loginService;
-    
-    @Autowired
-    private ProductsInterface prodService;
 
     // Dependency injection of LoginService
+    @Autowired
     public LoginController(LoginService loginService) {
         this.loginService = loginService;
     }
@@ -41,29 +34,23 @@ public class LoginController {
     }
 
     @GetMapping("/login/products")
-    public String showProductpage() {
-    	System.out.println("Hello from ShowProductPage");
-    	return "product";
+    public String showProductPage() {
+        return "product"; // "product.html" file in the templates directory
     }
-    
+
     @PostMapping("/login")
     public String login(@Valid @ModelAttribute("loginForm") LoginForm loginForm, 
                         BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "login";
+            return "login"; // Return to login if there are validation errors
         }
 
         if (loginService.authenticate(loginForm)) {
-        	System.out.println("authenticated");
-        	//List<ProductModel> products = prodService.getProducts();
-    		
-    		model.addAttribute("title", "My Products");
-    		//model.addAttribute("products", products);
-            //model.addAttribute("username", loginForm.getUsername());
-            return "redirect:/product";
+            model.addAttribute("username", loginForm.getUsername());
+            return "redirect:/products"; // Redirect to the products page on successful login
         } else {
             model.addAttribute("error", "Invalid username or password");
-            return "login";
+            return "login"; // Return to login page if authentication fails
         }
     }
 }

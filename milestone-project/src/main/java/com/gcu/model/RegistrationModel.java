@@ -3,10 +3,18 @@ package com.gcu.model;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
+
+@Table("registration")
 public class RegistrationModel {
+
+    @Id
+    private Long id;
+
     @NotNull(message = "Username is required")
-    @Size(min = 6)
+    @Size(min = 1)
     private String userName;
 
     @NotNull(message = "Password is required")
@@ -14,11 +22,11 @@ public class RegistrationModel {
     private String password;
 
     @NotNull(message = "First name is required")
-    @Size(min = 6)
+    @Size(min = 1)
     private String firstName;
 
     @NotNull(message = "Last name is required")
-    @Size(min = 6)
+    @Size(min = 1)
     private String lastName;
 
     @NotNull(message = "Email is required")
@@ -27,6 +35,8 @@ public class RegistrationModel {
 
     @NotNull(message = "Phone number is required")
     private String phone;
+
+
 
     // Getters and setters for all fields
 

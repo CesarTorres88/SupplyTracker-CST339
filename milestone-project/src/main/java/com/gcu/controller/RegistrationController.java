@@ -41,13 +41,8 @@ public class RegistrationController
         {
             return "registrationPage";
         }
-        //Use service layer for business logic
-        String regResult = registrationService.registerUser(registrationModel);
-        model.addAttribute("message", regResult);
-
-
-        // For now, we'll just display the data, and eventually, we can save it to a database
-        model.addAttribute("registrationData", registrationModel);
+        RegistrationModel savedRegistration = registrationService.registerUser(registrationModel);
+        model.addAttribute("registrationData", savedRegistration);
         return "registrationSuccess";
     }
 }

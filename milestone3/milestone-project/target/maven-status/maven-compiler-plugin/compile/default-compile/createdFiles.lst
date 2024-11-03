@@ -1,0 +1,12 @@
+com\gcu\model\RegistrationModel.class
+com\gcu\controller\ProductController.class
+com\gcu\model\LoginForm.class
+com\gcu\controller\RegistrationController.class
+com\gcu\service\RegistrationServiceImpl.class
+com\gcu\controller\LoginController.class
+com\gcu\service\LoginService.class
+com\gcu\service\RegistrationService.class
+com\gcu\model\User.class
+com\gcu\MilestoneProjectApplication.class
+com\gcu\controller\MainController.class
+com\gcu\model\ProductModel.class

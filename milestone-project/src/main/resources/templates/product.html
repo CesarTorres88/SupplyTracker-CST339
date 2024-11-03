@@ -4,30 +4,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Products</title>
+    <title>Product List</title>
 </head>
-
+<a href="/createproduct" class="create-product-button">Create New Product</a>
 <body>
     <div layout:fragment="content">
-		<table style="width:50%">
-			<thead>
-				<tr>
-					<th style="text-align: center">Product Name</th>
-					<th style="text-align: center">Price</th>
-					<th style="text-align: center">Quantity Available</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:if="${products.empty}">
-					<td style="text-align: center" colspan="4"> No Orders Available </td>
-				</tr>
-				<tr th:each="product : ${products}">
-					<td style="text-align: center"><h5 th:text="${order.productName}">Product 1</h5></td>
-					<td style="text-align: center"><h5 th:text="${order.price}">1.00</h5></td>
-					<td style="text-align: center"><h5 th:text="${order.quantity}">1</h5></td>
-				</tr>
-			</tbody>
-		</table>
+        <div th:each="product : ${products}" class="product-card">
+            <form th:action="@{/login}" th:object="${loginForm}" method="post">
+                <h2 th:text="${product.name}">Product Name</h2>
+                <p><strong>💰Price:</strong> $<span th:text="${product.price}">0.00</span></p>
+                <p><strong>📝Description:</strong> <span th:text="${product.description}">No description
+                        available</span>
+                </p>
+                <p><strong>👤Vendor:</strong> <span th:text="${product.vendor}">Vendor Name</span></p>
+                <p><strong>🎭Category:</strong> <span th:text="${product.category}">Category Name</span></p>
+                <p><strong>📦Current Quantity:</strong> <span th:text="${product.currentQuantity}">0</span></p>
+                <p><strong>🔔Reorder Point:</strong> <span th:text="${product.reorder_point}">0</span></p>
+                <p><strong>🔄Reorder Amount:</strong> <span th:text="${product.reorder_amt}">0</span></p>
+                <p><strong>💵Cost:</strong> $<span th:text="${product.cost}">0.00</span></p>
+            </form>
+        </div>
     </div>
 </body>
 

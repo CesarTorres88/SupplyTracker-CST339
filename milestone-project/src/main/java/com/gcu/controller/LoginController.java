@@ -20,13 +20,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class LoginController {
 
-	@Autowired
+	//@Autowired
     private final LoginService loginService;
     
     @Autowired
     private ProductsInterface prodService;
 
     // Dependency injection of LoginService
+    @Autowired
     public LoginController(LoginService loginService) {
         this.loginService = loginService;
     }
@@ -41,7 +42,7 @@ public class LoginController {
     }
 
     @GetMapping("/login/products")
-    public String showProductpage() {
+    public String showProductPage() {
     	System.out.println("Hello from ShowProductPage");
     	return "product";
     }
@@ -57,10 +58,10 @@ public class LoginController {
         	System.out.println("authenticated");
         	//List<ProductModel> products = prodService.getProducts();
     		
-    		model.addAttribute("title", "My Products");
+    		//model.addAttribute("title", "My Products");
     		//model.addAttribute("products", products);
-            //model.addAttribute("username", loginForm.getUsername());
-            return "redirect:/product";
+            model.addAttribute("username", loginForm.getUsername());
+            return "redirect:/products";
         } else {
             model.addAttribute("error", "Invalid username or password");
             return "login";

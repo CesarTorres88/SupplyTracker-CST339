@@ -3,6 +3,7 @@ package com.gcu.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,35 +12,29 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gcu.model.ProductModel;
+import com.gcu.service.ProductsService;
 
 import jakarta.validation.Valid;
 
 @Controller
 public class ProductController {
 
-    private List<ProductModel> products = new ArrayList<>(); // Array List used to store products in memory
-
+    private final ProductsService productsService;
+    
+    @Autowired
+    public ProductController(ProductsService productsService) {
+    	this.productsService = productsService;
+    }
+    
     @GetMapping("/products")
     public String displayProducts(Model model) {
         System.out.println("Displaying product page");
-
-        if (products.isEmpty()) { // Sample products
-            ProductModel product1 = new ProductModel();
-            product1.setId(1);
-            product1.setName("Product 1");
-            product1.setDescription("Description for Product 1");
-            product1.setPrice(19.99);
-            product1.setCurrentQuantity(100);
-            product1.setVendor("Vendor A");
-            product1.setCategory("Category 1");
-            product1.setReorder_point(10);
-            product1.setReorder_amt(50);
-            product1.setCost(15.00);
-
-            products.add(product1);
-            // Add more products to the list...
+        List<ProductModel> productList = new ArrayList<ProductModel>();
+        Iterable<ProductModel> products = productsService.getAllProducts();
+        for (ProductModel product: products) {
+        	productList.add(product);
         }
-        model.addAttribute("products", products);
+        model.addAttribute("products", productList);
         return "product"; // Return to product.html in templates
     }
 
@@ -53,12 +48,11 @@ public class ProductController {
     public String createProduct(@Valid @ModelAttribute ProductModel product, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             //If an error is return to the from with errors
-            model.addAttribute("product", product);
             return "createproduct"; //Returns to creating form
         }
 
-        product.setId(products.size() + 1); // ID Generator
-        products.add(product); // Save product to the list
+        ProductModel newProduct = productsService.createProduct(product);
+        model.addAttribute("productData", newProduct);
         return "redirect:/products"; // Redirect to the products page
     }
 }

@@ -11,8 +11,8 @@ import com.gcu.service.ProductsService;
 
 @Configuration
 public class SpringConfig {
-	@Bean(name="prodService")
-	public ProductsInterface getProductsService() {
-		return new ProductsService();
-	}
+	//@Bean(name="prodService")
+	//public ProductsInterface getProductsService() {
+		//return new ProductsService();
+	//}
 }

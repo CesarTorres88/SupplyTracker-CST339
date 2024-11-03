@@ -5,5 +5,6 @@ import java.util.List;
 import com.gcu.model.ProductModel;
 
 public interface ProductsInterface {
-	public List<ProductModel> getProducts();
+	ProductModel createProduct(ProductModel pm);
+	Iterable<ProductModel> getAllProducts();
 }

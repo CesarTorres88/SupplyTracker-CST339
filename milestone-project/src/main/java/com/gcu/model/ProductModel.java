@@ -1,11 +1,17 @@
 package com.gcu.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
+@Table("product")
 public class ProductModel {
 
+    @Id
     private int id;
 
     @NotBlank(message = "Product name is required")
@@ -17,6 +23,7 @@ public class ProductModel {
     @NotBlank(message = "Description is required")
     private String description;
 
+    @Column("qty")
     @Min(value = 0, message = "Current quantity cannot be negative")
     private int currentQuantity;
 

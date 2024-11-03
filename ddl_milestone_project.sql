@@ -18,6 +18,8 @@ PRIMARY KEY (id)) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 -- Dumping data for table registration
 LOCK TABLES registration WRITE;
 INSERT INTO registration VALUES ('jrinehart12345','jrinehart1@my.gcu.edu','Passwordisalwayspassword','2024-11-01 22:47:57',1,'Justin','Rinehart','5204402425');
+
+UNLOCK TABLES;
 --
 -- Table structure for table product
 DROP TABLE IF EXISTS product;

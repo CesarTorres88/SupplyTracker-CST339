@@ -1,0 +1,98 @@
+********ProductController.java********
+
+package com.supplytrack;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@Controller
+public class ProductController {
+
+    @Autowired
+    private ProductService productService;
+
+    @GetMapping("/product/{id}")
+    public String getProductDetails(@PathVariable Long id, Model model) {
+        Product product = productService.getProductById(id);
+        model.addAttribute("product", product);
+        return "productDetails";
+    }
+    
+    // Redirect to the update page
+    @GetMapping("/product/{id}/update")
+    public String updateProduct(@PathVariable Long id) {
+        return "redirect:/updateProduct/" + id;
+    }
+}
+
+
+
+
+
+********ProductService.java********
+
+package com.supplytrack;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ProductService {
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    public Product getProductById(Long id) {
+        return productRepository.findById(id).orElse(null);
+    }
+}
+
+
+
+
+
+********ProductRepository.java********
+
+package com.supplytrack;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProductRepository extends JpaRepository<Product, Long> {
+}
+
+
+
+
+********productDetails.html********
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Details</title>
+</head>
+<body>
+    <h1 th:text="${product.name}">Product Name</h1>
+    <p>Price: <span th:text="${product.price}">$12.34</span></p>
+    <p>Description: <span th:text="${product.description}">Example description</span></p>
+    <p>Vendor: <span th:text="${product.vendor}">Example vendor</span></p>
+    <p>Category: <span th:text="${product.category}">Example category</span></p>
+    <p>Current Quantity: <span th:text="${product.currentQuantity}">30</span></p>
+    <p>Reorder Point: <span th:text="${product.reorderPoint}">10</span></p>
+    <p>Reorder Amount: <span th:text="${product.reorderAmount}">50</span></p>
+    <p>Cost: <span th:text="${product.cost}">$10.98</span></p>
+
+    <a th:href="@{/product/{id}/update(id=${product.id})}">
+        <button>Update Product</button>
+    </a>
+</body>
+</html>
+
+
+
+
+
+
+

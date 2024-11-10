@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+<head>
+    <title>Product Details</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h1 th:text="${product.name}">Product Name</h1>
+		<p>💰Price: <span th:text="${product.price}">$12.34</span></p>
+		<p>📝Description: <span th:text="${product.description}">Example description</span></p>
+		<p>👤Vendor: <span th:text="${product.vendor}">Example vendor</span></p>
+		<p>🎭Category: <span th:text="${product.category}">Example category</span></p>
+		<p>📦Current Quantity: <span th:text="${product.currentQuantity}">30</span></p>
+		<p>🔔Reorder Point: <span th:text="${product.reorder_point}">10</span></p>
+		<p>🔄Reorder Amount: <span th:text="${product.reorder_amt}">50</span></p>
+		<p>💵Cost: <span th:text="${product.cost}">$10.98</span></p>
+
+		<a th:href="@{/updateProduct(id=${product.id})}">
+		    <button>Update Product</button>
+		</a>
+	</div>
+</body>
+</html>

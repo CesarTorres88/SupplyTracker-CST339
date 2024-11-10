@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layouts/defaultTemplate">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Update Product</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <h1>Update Product</h1>
+        <form th:action="@{/updateProduct}" th:object="${product}" method="post">
+            <label for="name">🌟Product Name:</label>
+            <input type="text" id="name" th:field="*{name}" required><br><br>
+            <div th:if="${#fields.hasErrors('name')}" style="color:red;">
+                <p th:errors="*{name}">Error</p>
+            </div>
+
+
+            <label for="price">💰Price:</label>
+            <input type="number" id="price" th:field="*{price}" step="0.01" required><br><br>
+            <div th:if="${#fields.hasErrors('price')}" style="color:red;">
+                <p th:errors="*{price}">Error</p>
+            </div>
+
+            <label for="description">📝Description:</label>
+            <textarea id="description" th:field="*{description}" required></textarea><br><br>
+            <div th:if="${#fields.hasErrors('description')}" style="color:red;">
+                <p th:errors="*{price}">Error</p>
+            </div>
+
+            <label for="currentQuantity">📦Current Quantity:</label>
+            <input type="number" id="currentQuantity" th:field="*{currentQuantity}" required><br><br>
+            <div th:if="${#fields.hasErrors('currentQuantity')}" style="color:red;">
+                <p th:errors="*{price}">Error</p>
+            </div>
+
+            <label for="vendor">👤Vendor:</label>
+            <input type="text" id="vendor" th:field="*{vendor}" required><br><br>
+            <div th:if="${#fields.hasErrors('vendor')}" style="color:red;">
+                <p th:errors="*{price}">Error</p>
+            </div>
+
+            <label for="category">🎭Category:</label>
+            <input type="text" id="category" th:field="*{category}" required><br><br>
+            <div th:if="${#fields.hasErrors('category')}" style="color:red;">
+                <p th:errors="*{price}">Error</p>
+            </div>
+
+            <label for="reorder_point">🔔Reorder Point:</label>
+            <input type="number" id="reorder_point" th:field="*{reorder_point}" required><br><br>
+            <div th:if="${#fields.hasErrors('reorder_point')}" style="color:red;">
+                <p th:errors="*{price}">Error</p>
+            </div>
+
+            <label for="reorder_amt">🔄Reorder Amount:</label>
+            <input type="number" id="reorder_amt" th:field="*{reorder_amt}" required><br><br>
+            <div th:if="${#fields.hasErrors('reorder_amt')}" style="color:red;">
+                <p th:errors="*{price}">Error</p>
+            </div>
+
+            <label for="cost">💵Cost:</label>
+            <input type="number" id="cost" th:field="*{cost}" step="0.01" required><br><br>
+            <div th:if="${#fields.hasErrors('cost')}" style="color:red;">
+                <p th:errors="*{price}">Error</p>
+            </div>
+			
+			<input type="number" id="id" th:field="*{id}" required hidden>
+
+            <button type="submit">Save Updates</button>
+        </form>
+    </div>
+</body>
+
+</html>

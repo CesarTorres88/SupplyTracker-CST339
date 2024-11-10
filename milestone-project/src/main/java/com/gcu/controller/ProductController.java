@@ -10,6 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.gcu.model.ProductModel;
 import com.gcu.service.ProductsService;
@@ -54,5 +56,29 @@ public class ProductController {
         ProductModel newProduct = productsService.createProduct(product);
         model.addAttribute("productData", newProduct);
         return "redirect:/products"; // Redirect to the products page
+    }
+    
+    @GetMapping("/product/{id}")
+    public String getProductDetails(@PathVariable int id, Model model) {
+    	System.out.println("ProductController:getProductDetails, id=" + id);
+        ProductModel product = productsService.getProductById(id);
+        System.out.println(product.getId() + ", " + product.getName());
+        model.addAttribute("product", product);
+        return "productDetails";
+    }
+    
+    // Redirect to the update page
+    @GetMapping("/updateProduct")
+    public String updateProduct(@RequestParam int id, Model model) {
+    	ProductModel product = productsService.getProductById(id);
+    	model.addAttribute("product", product);
+        return "updateProduct";
+    }
+    
+    @PostMapping("/updateProduct")
+    public String updateProduct(@Valid @ModelAttribute ProductModel product, BindingResult bindingResult, Model model) {
+    	ProductModel updatedProduct = productsService.updateProduct(product);
+        model.addAttribute("productData", updatedProduct);
+    	return "redirect:/products"; // Redirect to the products page
     }
 }

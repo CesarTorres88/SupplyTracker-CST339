@@ -52,4 +52,10 @@ public class ProductsService implements ProductsInterface {
 		return product;
 	}
 
+
+
+	public void deleteProductById(int id) {
+		productRepository.deleteById(id);
+	}
+
 }

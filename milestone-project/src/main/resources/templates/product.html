@@ -1,30 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="layouts/defaultTemplate">
-
+<!-- Tab Name -->
 <head>
     <meta charset="UTF-8">
     <title>Product List</title>
 </head>
-<a href="/createproduct" class="create-product-button">Create New Product</a>
+<!-- Body portion handled by the thymeleaf service in the content view-->
 <body>
     <div layout:fragment="content">
-        <div th:each="product : ${products}" class="product-card">
-            <form th:action="@{/login}" th:object="${loginForm}" method="post">
-                <h2 th:text="${product.name}">Product Name</h2>
-                <p><strong>💰Price:</strong> $<span th:text="${product.price}">0.00</span></p>
-                <p><strong>📝Description:</strong> <span th:text="${product.description}">No description
-                        available</span>
-                </p>
-                <p><strong>👤Vendor:</strong> <span th:text="${product.vendor}">Vendor Name</span></p>
-                <p><strong>🎭Category:</strong> <span th:text="${product.category}">Category Name</span></p>
-                <p><strong>📦Current Quantity:</strong> <span th:text="${product.currentQuantity}">0</span></p>
-                <p><strong>🔔Reorder Point:</strong> <span th:text="${product.reorder_point}">0</span></p>
-                <p><strong>🔄Reorder Amount:</strong> <span th:text="${product.reorder_amt}">0</span></p>
-                <p><strong>💵Cost:</strong> $<span th:text="${product.cost}">0.00</span></p>
-            </form>
+        <!-- Header for the page -->
+        <h1>Product List</h1>
+        <a href="/createproduct" class="btn btn-primary">Create New Product</a>
+            <table class="table-header table-primary table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">ID#:</th>
+                        <th scope="col">Name:</th>
+                        <th scope="col">Price:</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Vendor:</th>
+                        <th scope="col">Category:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each = "product : ${products}">
+                        <td th:text="${product.id}">id</td>
+                        <td th:text="${product.name}">name</td>
+                        <td th:text="${product.price}">price</td>
+                        <td th:text="${product.description}">description</td>
+                        <td th:text="${product.vendor}">vendor</td>
+                        <td th:text="${product.category}">category</td>
+                        <td>
+                            <!-- Delete Button -->
+                            <form th:action="@{/product/delete/{id}(id=${product.id})}" method="post"
+                                  onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                <button type="submit" class="btn btn-primary">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
-    </div>
 </body>
 
 </html>

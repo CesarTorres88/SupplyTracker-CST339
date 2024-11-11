@@ -9,66 +9,57 @@
 
 <body>
     <div layout:fragment="content">
-        <h1>Create New Product</h1>
-        <form th:action="@{/createproduct}" th:object="${product}" method="post">
-            <label for="name">🌟Product Name:</label>
-            <input type="text" id="name" th:field="*{name}" required><br><br>
-            <div th:if="${#fields.hasErrors('name')}" style="color:red;">
-                <p th:errors="*{name}">Error</p>
-            </div>
-
-
-            <label for="price">💰 Price:</label>
-            <input type="number" id="price" th:field="*{price}" step="0.01" required><br><br>
-            <div th:if="${#fields.hasErrors('price')}" style="color:red;">
-                <p th:errors="*{price}">Error</p>
-            </div>
-
-            <label for="description">📝Description:</label>
-            <textarea id="description" th:field="*{description}" required></textarea><br><br>
-            <div th:if="${#fields.hasErrors('description')}" style="color:red;">
-                <p th:errors="*{price}">Error</p>
-            </div>
-
-            <label for="currentQuantity">📦Current Quantity:</label>
-            <input type="number" id="currentQuantity" th:field="*{currentQuantity}" required><br><br>
-            <div th:if="${#fields.hasErrors('currentQuantity')}" style="color:red;">
-                <p th:errors="*{price}">Error</p>
-            </div>
-
-            <label for="vendor">👤Vendor:</label>
-            <input type="text" id="vendor" th:field="*{vendor}" required><br><br>
-            <div th:if="${#fields.hasErrors('vendor')}" style="color:red;">
-                <p th:errors="*{price}">Error</p>
-            </div>
-
-            <label for="category">🎭Category:</label>
-            <input type="text" id="category" th:field="*{category}" required><br><br>
-            <div th:if="${#fields.hasErrors('category')}" style="color:red;">
-                <p th:errors="*{price}">Error</p>
-            </div>
-
-            <label for="reorder_point">🔔Reorder Point:</label>
-            <input type="number" id="reorder_point" th:field="*{reorder_point}" required><br><br>
-            <div th:if="${#fields.hasErrors('reorder_point')}" style="color:red;">
-                <p th:errors="*{price}">Error</p>
-            </div>
-
-            <label for="reorder_amt">🔄Reorder Amount:</label>
-            <input type="number" id="reorder_amt" th:field="*{reorder_amt}" required><br><br>
-            <div th:if="${#fields.hasErrors('reorder_amt')}" style="color:red;">
-                <p th:errors="*{price}">Error</p>
-            </div>
-
-            <label for="cost">💵Cost:</label>
-            <input type="number" id="cost" th:field="*{cost}" step="0.01" required><br><br>
-            <div th:if="${#fields.hasErrors('cost')}" style="color:red;">
-                <p th:errors="*{price}">Error</p>
-            </div>
-
-            <button type="submit">Create Product</button>
-        </form>
+        <div class="container my-5">
+            <h2>Create New Product</h2>
+            <form th:action="@{/createproduct}" th:object="${product}" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">🌟Product Name:</label>
+                    <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Product Name">
+                    <p class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">💰 Price:</label>
+                    <input type="text" th:field="*{price}" class="form-control" id="price" placeholder="Product Price">
+                    <p class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">📝Description:</label>
+                    <input type="text" th:field="*{description}" class="form-control" id="description" placeholder="Product Description">
+                    <p class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="currentQuantity" class="form-label">📦Current Quantity:</label>
+                    <input type="text" th:field="*{currentQuantity}" class="form-control" id="currentQuantity" placeholder="Product Current Quantity">
+                    <p class="text-danger" th:if="${#fields.hasErrors('currentQuantity')}" th:errors="*{currentQuantity}"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="vendor" class="form-label">👤Vendor:</label>
+                    <input type="text" th:field="*{vendor}" class="form-control" id="vendor" placeholder="Product Vendor">
+                    <p class="text-danger" th:if="${#fields.hasErrors('vendor')}" th:errors="*{vendor}"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="category" class="form-label">🎭Category:</label>
+                    <input type="text" th:field="*{category}" class="form-control" id="category" placeholder="Product Category">
+                    <p class="text-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="reorder_point" class="form-label">🔔Reorder Point:</label>
+                    <input type="text" th:field="*{reorder_point}" class="form-control" id="reorder_point" placeholder="Product Re-Order Point">
+                    <p class="text-danger" th:if="${#fields.hasErrors('reorder_point')}" th:errors="*{reorder_point}"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="reorder_amt" class="form-label">🔄Reorder Amount:</label>
+                    <input type="text" th:field="*{reorder_amt}" class="form-control" id="reorder_amt" placeholder="Product Re-Order Amount">
+                    <p class="text-danger" th:if="${#fields.hasErrors('reorder_amt')}" th:errors="*{reorder_amt}"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="cost" class="form-label">💵Cost:</label>
+                    <input type="text" th:field="*{cost}" class="form-control" id="cost" placeholder="Product Total Cost">
+                    <p class="text-danger" th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></p>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Product</button>
+            </form>
+        </div>
     </div>
 </body>
-
 </html>

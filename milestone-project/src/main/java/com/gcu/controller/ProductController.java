@@ -81,4 +81,13 @@ public class ProductController {
         model.addAttribute("productData", updatedProduct);
     	return "redirect:/products"; // Redirect to the products page
     }
+
+    //Delete Functionality
+    @PostMapping("/product/delete/{id}")
+    public String deleteProduct(@PathVariable int id, Model model) {
+        productsService.deleteProductById(id);
+        return "redirect:/products"; //back to products page after deletion
+    }
+
+
 }

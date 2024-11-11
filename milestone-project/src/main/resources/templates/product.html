@@ -32,6 +32,12 @@
                         <td th:text="${product.vendor}">vendor</td>
                         <td th:text="${product.category}">category</td>
                         <td>
+                            <!--INFO Button-->
+                            <form th:action="@{/product/{id}(id=${product.id})}" method="post";>
+                                <button type="submit" class="btn btn-secondary">Info</button>
+                            </form>
+                        </td>
+                        <td>
                             <!-- Delete Button -->
                             <form th:action="@{/product/delete/{id}(id=${product.id})}" method="post"
                                   onsubmit="return confirm('Are you sure you want to delete this product?');">

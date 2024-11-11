@@ -89,5 +89,4 @@ public class ProductController {
         return "redirect:/products"; //back to products page after deletion
     }
 
-
 }

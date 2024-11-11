@@ -58,7 +58,7 @@ public class ProductController {
         return "redirect:/products"; // Redirect to the products page
     }
     
-    @GetMapping("/product/{id}")
+    @PostMapping("/product/{id}")
     public String getProductDetails(@PathVariable int id, Model model) {
     	System.out.println("ProductController:getProductDetails, id=" + id);
         ProductModel product = productsService.getProductById(id);
@@ -88,6 +88,5 @@ public class ProductController {
         productsService.deleteProductById(id);
         return "redirect:/products"; //back to products page after deletion
     }
-
 
 }

@@ -23,48 +23,29 @@ public class LoginController {
 	//@Autowired
     private final LoginService loginService;
     
-    @Autowired
+    //@Autowired
     private ProductsInterface prodService;
 
     // Dependency injection of LoginService
     @Autowired
-    public LoginController(LoginService loginService) {
+    public LoginController(LoginService loginService, ProductsInterface prodService) {
         this.loginService = loginService;
+        this.prodService = prodService;
+    }
+    
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
     }
 
-    @GetMapping("/login")
-    public String showLoginForm(Model model) {
-        LoginForm loginForm = new LoginForm();
-        loginForm.setUsername("admin");
-        loginForm.setPassword("password");
-        model.addAttribute("loginForm", loginForm);
-        return "login";
+    @GetMapping("/registration")
+    public String registrationPage() {
+        return "registration";
     }
 
     @GetMapping("/login/products")
     public String showProductPage() {
     	System.out.println("Hello from ShowProductPage");
     	return "product";
-    }
-    
-    @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("loginForm") LoginForm loginForm, 
-                        BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "login";
-        }
-
-        if (loginService.authenticate(loginForm)) {
-        	System.out.println("authenticated");
-        	//List<ProductModel> products = prodService.getProducts();
-    		
-    		//model.addAttribute("title", "My Products");
-    		//model.addAttribute("products", products);
-            model.addAttribute("username", loginForm.getUsername());
-            return "redirect:/products";
-        } else {
-            model.addAttribute("error", "Invalid username or password");
-            return "login";
-        }
     }
 }

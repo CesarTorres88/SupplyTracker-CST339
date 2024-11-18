@@ -15,6 +15,11 @@
 						<li><a href="/products" style="color: white;">Products</a></li>
 						<li><a href="/login" style="color:white;">Login</a></li>
 						<li><a href="/register" style="color:white;">Sign Up</a></li>
+						<li>
+							<form th:action="@{/logout}" method="POST">
+								<input type="submit" value="Log Out"/>
+							</form>
+						</li>
 					</ul>
 				</div>
 			</nav>

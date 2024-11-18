@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RegistrationRepository extends CrudRepository<RegistrationModel, Long> {
-    // Spring Data JDBC will provide implementations for basic CRUD operations
 
+	RegistrationModel findByUserName(String username);
+    
 }

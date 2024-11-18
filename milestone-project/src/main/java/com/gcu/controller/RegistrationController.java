@@ -4,6 +4,7 @@ import com.gcu.model.RegistrationModel;
 import com.gcu.service.RegistrationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,6 +42,9 @@ public class RegistrationController
         {
             return "registrationPage";
         }
+        String pw = registrationModel.getPassword();
+        String encpw = new BCryptPasswordEncoder().encode(pw);
+        registrationModel.setPassword(encpw);
         RegistrationModel savedRegistration = registrationService.registerUser(registrationModel);
         model.addAttribute("registrationData", savedRegistration);
         return "registrationSuccess";

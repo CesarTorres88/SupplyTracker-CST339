@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * Checks if a user with the given username exists in the database.
-     * @param username The username to check.
+     * @param user_name The username to check.
      * @return true if the user exists, false otherwise.
      */
     @Override
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * Creates and saves a new user in the database.
-     * @param user The user model containing username and password.
+     * @param userModel The user model containing username and password.
      * @return The saved user model.
      */
     @Override

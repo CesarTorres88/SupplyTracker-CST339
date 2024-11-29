@@ -45,12 +45,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/register", "/css/**", "/js/**", "/images/**").permitAll() // Allow access to registration and static resources
+                .requestMatchers("/register", "/main", "/login", "/images/**").permitAll() // Allow access to registration and static resources
                 .anyRequest().authenticated() // Require authentication for all other requests
             )
             .formLogin(login -> login
-                .loginPage("/login") // Custom login page URL
-                .permitAll() // Allow everyone to access the login page
+                .loginPage("/login").permitAll() // Allow everyone to access the login page
+                .defaultSuccessUrl("/products", true)
             )
             .logout(logout -> logout
                 .logoutUrl("/logout")

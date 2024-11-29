@@ -5,7 +5,7 @@
 	  <form th:action="@{/register}" th:object="${registrationModel}" method="post">
 	    <div class="mb-3">
 	      <label for="userName" class="form-label">Username</label>
-	      <input type="text" th:field="*{userName}" class="form-control" id="userName" placeholder="Enter username">
+	      <input type="text" th:field="*{userName}" class="form-control" id="userName" placeholder="Enter user_name">
 	      <p class="text-danger" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
 	    </div>
 	    <div class="mb-3">
